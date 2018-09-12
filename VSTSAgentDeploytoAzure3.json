@@ -25,8 +25,8 @@
       "NicName": "[concat(variables('AgentVMName'), '-NIC')]",
       "AgentVM-PUBIPName": "[concat(variables('AgentVMName'), '-PIP')]",
       "InstallAppsScriptFolder": ".",
-      "InstallAppsScriptFileName": "ChocolateyInstall.ps1",
-      "InstallAppsURL": "https://raw.githubusercontent.com/eamonnk/VSTSAgentDeploy/master/ChocolateyInstall.ps1"
+      "InstallAppsScriptFileName": "InstallAppswithChocolatey.ps1",
+      "InstallAppsURL": "https://raw.githubusercontent.com/eamonnk/VSTSAgentDeploy/master/InstallAppswithChocolatey.ps1"
     },
     "resources": [
       {
