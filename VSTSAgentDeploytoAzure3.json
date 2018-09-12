@@ -24,9 +24,9 @@
       "CountChoculaSubnetRef": "[concat(variables('CountChoculaVnetID'), '/subnets/', variables('CountChoculaVNETSubnet1Name'))]",
       "CountChoculaNicName": "[concat(variables('CountChoculaName'), '-NIC')]",
       "CountChocula-PUBIPName": "[concat(variables('CountChoculaName'), '-PIP')]",
-      "CountChoculaInstallHyperVScriptFolder": ".",
-      "CountChoculaInstallHyperVScriptFileName": "InstallCountChocula.ps1",
-      "CountChoculaInstallHyperVURL": "https://raw.githubusercontent.com/deltadan/CountChocula/master/InstallCountChocula.ps1"
+      "InstallAppsScriptFolder": ".",
+      "InstallAppsScriptFileName": "ChocolateyInstall.ps1",
+      "InstallAppsURL": "https://raw.githubusercontent.com/eamonnk/VSTSAgentDeploy/master/ChocolateyInstall.ps1"
     },
     "resources": [
       {
@@ -158,9 +158,9 @@
               "autoUpgradeMinorVersion": true,
               "settings": {
                 "fileUris": [
-                  "[variables('CountChoculaInstallHyperVURL')]"
+                  "[variables('InstallAppsURL')]"
                 ],
-                "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('CountChoculaInstallHyperVScriptFolder'), '/', variables('CountChoculaInstallHyperVScriptFileName'))]"
+                "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('InstallAppsScriptFolder'), '/', variables('InstallAppsScriptFileName'))]"
               }
             }
           }
