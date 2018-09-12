@@ -1,0 +1,171 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "DnsName": {
+        "type": "string",
+        "defaultValue": "dnsnameupdateme",
+        "minLength": 1
+      }
+    },
+    "variables": {
+      "VNETPrefix": "192.168.0.0/24",
+      "VNETSubnet1Name": "vstsagentsnet1",
+      "VNETSubnet1Prefix": "192.168.0.0/24",
+      "VMName": "VSTSAgentWS16wCntrs",
+      "AdminUserName": "stormtrooperio",
+      "AdminPassword": "Password.1!!",
+      "ImagePublisher": "MicrosoftWindowsServer",
+      "ImageOffer": "WindowsServer",
+      "WindowsOSVersion": "2016-Datacenter",
+      "OSDiskName": "[concat(variables('VMName'), '-OSDISK')]",
+      "VmSize": "Standard_D2s_v3",
+      "VnetID": "[resourceId('Microsoft.Network/virtualNetworks', 'VNET')]",
+      "SubnetRef": "[concat(variables('VnetID'), '/subnets/', variables('VNETSubnet1Name'))]",
+      "NicName": "[concat(variables('VMName'), '-NIC')]",
+      "PUBIPName": "[concat(variables('VMName'), '-PIP')]",
+      "InstallAppsScriptFolder": ".",
+      "InstallAppsScriptFileName": "ChocolateyInstall.ps1 ",
+      "InstallAppsURL": "https://raw.githubusercontent.com/eamonnk/VSTSAgentDeploy/master/ChocolateyInstall.ps1"
+    },
+    "resources": [
+      {
+        "name": "VNET",
+        "type": "Microsoft.Network/virtualNetworks",
+        "location": "[resourceGroup().location]",
+        "apiVersion": "2016-03-30",
+        "dependsOn": [],
+        "tags": {
+          "displayName": "VNET"
+        },
+        "properties": {
+          "addressSpace": {
+            "addressPrefixes": [
+              "[variables('VNETPrefix')]"
+            ]
+          },
+          "subnets": [
+            {
+              "name": "[variables('VNETSubnet1Name')]",
+              "properties": {
+                "addressPrefix": "[variables('VNETSubnet1Prefix')]"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "[variables('PUBIPName')]",
+        "type": "Microsoft.Network/publicIPAddresses",
+        "location": "[resourceGroup().location]",
+        "apiVersion": "2017-10-01",
+        "dependsOn": [],
+        "tags": {
+          "displayName": "PUBIP"
+        },
+        "properties": {
+          "publicIPAllocationMethod": "Dynamic",
+          "dnsSettings": {
+            "domainNameLabel": "[parameters('DnsName')]"
+          }
+        }
+      },
+      {
+        "name": "[variables('NicName')]",
+        "type": "Microsoft.Network/networkInterfaces",
+        "location": "[resourceGroup().location]",
+        "apiVersion": "2017-10-01",
+        "dependsOn": [
+          "[resourceId('Microsoft.Network/virtualNetworks', 'VNET')]",
+          "[resourceId('Microsoft.Network/publicIPAddresses', variables('PUBIPName'))]"
+        ],
+        "tags": {
+          "displayName": "Nic"
+        },
+        "properties": {
+          "ipConfigurations": [
+            {
+              "name": "ipconfig1",
+              "properties": {
+                "privateIPAllocationMethod": "Dynamic",
+                "subnet": {
+                  "id": "[variables('SubnetRef')]"
+                },
+                "publicIPAddress": {
+                  "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('PUBIPName'))]"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "[variables('VMName')]",
+        "type": "Microsoft.Compute/virtualMachines",
+        "location": "[resourceGroup().location]",
+        "apiVersion": "2017-12-01",
+        "dependsOn": [
+          "[resourceId('Microsoft.Network/networkInterfaces', variables('NicName'))]"
+        ],
+        "tags": {
+          "displayName": "[variables('VMName')]"
+        },
+        "properties": {
+          "hardwareProfile": {
+            "vmSize": "[variables('VmSize')]"
+          },
+          "osProfile": {
+            "computerName": "[variables('VMName')]",
+            "adminUsername": "[variables('AdminUsername')]",
+            "adminPassword": "[variables('AdminPassword')]"
+          },
+          "storageProfile": {
+            "imageReference": {
+              "publisher": "[variables('ImagePublisher')]",
+              "offer": "[variables('ImageOffer')]",
+              "sku": "[variables('WindowsOSVersion')]",
+              "version": "latest"
+            },
+            "osDisk": {
+              "createOption": "FromImage",
+              "diskSizeGB": 1023
+            }
+          },
+          "networkProfile": {
+            "networkInterfaces": [
+              {
+                "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('NicName'))]"
+              }
+            ]
+          }
+        },
+        "resources": [
+          {
+            "name": "InstallAppswithChocolatey",
+            "type": "extensions",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2017-12-01",
+            "dependsOn": [
+              "[resourceId('Microsoft.Compute/virtualMachines', variables('VMName'))]"
+             ],
+            "tags": {
+              "displayName": "Install Applications with Chocolatey"
+            },
+            "properties": {
+              "publisher": "Microsoft.Compute",
+              "type": "CustomScriptExtension",
+              "typeHandlerVersion": "1.4",
+              "autoUpgradeMinorVersion": true,
+              "settings": {
+                "fileUris": [
+                  "[variables('InstallAppsURL')]"
+                ],
+                "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('InstallAppsScriptFolder'), '/', variables('InstallAppsScriptFileName'))]"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "outputs": {}
+  }
