@@ -12,18 +12,18 @@
       "VNETPrefix": "192.168.0.0/24",
       "VNETSubnet1Name": "CountChocula",
       "VNETSubnet1Prefix": "192.168.0.0/24",
-      "CountChoculaName": "CountChocula",
+      "AgentVMName": "CountChocula",
       "AgentVMAdminUserName": "azureuser",
       "AgentVMAdminPassword": "Passw0rd0134",
       "ImagePublisher": "MicrosoftWindowsServer",
       "ImageOffer": "WindowsServerSemiAnnual",
       "WindowsOSVersion": "Datacenter-Core-1709-with-Containers-smalldisk",
-      "CountChoculaOSDiskName": "[concat(variables('CountChoculaName'), '-OSDISK')]",
+      "CountChoculaOSDiskName": "[concat(variables('AgentVMName'), '-OSDISK')]",
       "CountChoculaVmSize": "Standard_D2s_v3",
       "CountChoculaVnetID": "[resourceId('Microsoft.Network/virtualNetworks', 'CountChoculaVNET')]",
       "CountChoculaSubnetRef": "[concat(variables('CountChoculaVnetID'), '/subnets/', variables('VNETSubnet1Name'))]",
-      "CountChoculaNicName": "[concat(variables('CountChoculaName'), '-NIC')]",
-      "CountChocula-PUBIPName": "[concat(variables('CountChoculaName'), '-PIP')]",
+      "CountChoculaNicName": "[concat(variables('AgentVMName'), '-NIC')]",
+      "CountChocula-PUBIPName": "[concat(variables('AgentVMName'), '-PIP')]",
       "InstallAppsScriptFolder": ".",
       "InstallAppsScriptFileName": "ChocolateyInstall.ps1",
       "InstallAppsURL": "https://raw.githubusercontent.com/eamonnk/VSTSAgentDeploy/master/ChocolateyInstall.ps1"
@@ -100,7 +100,7 @@
         }
       },
       {
-        "name": "[variables('CountChoculaName')]",
+        "name": "[variables('AgentVMName')]",
         "type": "Microsoft.Compute/virtualMachines",
         "location": "[resourceGroup().location]",
         "apiVersion": "2017-12-01",
@@ -115,7 +115,7 @@
             "vmSize": "[variables('CountChoculaVmSize')]"
           },
           "osProfile": {
-            "computerName": "[variables('CountChoculaName')]",
+            "computerName": "[variables('AgentVMName')]",
             "adminUsername": "[variables('AgentVMAdminUsername')]",
             "adminPassword": "[variables('AgentVMAdminPassword')]"
           },
@@ -146,7 +146,7 @@
             "location": "[resourceGroup().location]",
             "apiVersion": "2017-12-01",
             "dependsOn": [
-              "[resourceId('Microsoft.Compute/virtualMachines', variables('CountChoculaName'))]"
+              "[resourceId('Microsoft.Compute/virtualMachines', variables('AgentVMName'))]"
              ],
             "tags": {
               "displayName": "Install CountChocula Applications"
