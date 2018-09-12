@@ -25,6 +25,8 @@ $Packages = 'googlechrome',`
 
             'Docker'
 
+            'Microsoft-Hyper-V -s windowsfeatures'  
+
 
 
 
