@@ -15,9 +15,9 @@
       "CountChoculaName": "CountChocula",
       "AgentVMAdminUserName": "azureuser",
       "AgentVMAdminPassword": "Passw0rd0134",
-      "CountChoculaImagePublisher": "MicrosoftWindowsServer",
-      "CountChoculaImageOffer": "WindowsServerSemiAnnual",
-      "CountChoculaWindowsOSVersion": "Datacenter-Core-1709-with-Containers-smalldisk",
+      "ImagePublisher": "MicrosoftWindowsServer",
+      "ImageOffer": "WindowsServerSemiAnnual",
+      "WindowsOSVersion": "Datacenter-Core-1709-with-Containers-smalldisk",
       "CountChoculaOSDiskName": "[concat(variables('CountChoculaName'), '-OSDISK')]",
       "CountChoculaVmSize": "Standard_D2s_v3",
       "CountChoculaVnetID": "[resourceId('Microsoft.Network/virtualNetworks', 'CountChoculaVNET')]",
@@ -121,9 +121,9 @@
           },
           "storageProfile": {
             "imageReference": {
-              "publisher": "[variables('CountChoculaImagePublisher')]",
-              "offer": "[variables('CountChoculaImageOffer')]",
-              "sku": "[variables('CountChoculaWindowsOSVersion')]",
+              "publisher": "[variables('ImagePublisher')]",
+              "offer": "[variables('ImageOffer')]",
+              "sku": "[variables('WindowsOSVersion')]",
               "version": "latest"
             },
             "osDisk": {
