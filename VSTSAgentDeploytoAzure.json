@@ -40,22 +40,22 @@
         "virtualMachineSize": "Standard_D2s_v3",
         "virtualNetworkName": "vnet1",
         "networkInterfaceName": "nic1",
-        "subnetName":  "subnet1"
-        "subnetPrefix": "10.0.0.0/24"
-        "publicIpAddressName": "pubip"
-        "publicIpAddressType":"Dynamic"
-        "publicIpAddressSku": "Standard"
+        "subnetName":  "subnet1",
+        "subnetPrefix": "10.0.0.0/24",
+        "publicIpAddressName": "pubip",
+        "publicIpAddressType":"Dynamic",
+        "publicIpAddressSku": "Standard",
         "networkSecurityGroupName": "netsecgrp1",
-        "addressPrefix": "10.0.0.0/16"
+        "addressPrefix": "10.0.0.0/16",
         "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'visstudiovm')]",
         "storageAccountType": "Standard_LRS",
-        "subnetName":  "subnet1"
-        "subnetPrefix": "10.0.0.0/24"
-        "publicIpAddressName": "pubip"
-        "publicIpAddressType":"Dynamic"
-        "publicIpAddressSku": "Standard"
+        "subnetName":  "subnet1",
+        "subnetPrefix": "10.0.0.0/24",
+        "publicIpAddressName": "pubip",
+        "publicIpAddressType":"Dynamic",
+        "publicIpAddressSku": "Standard",
 
-            
+    
 
     },
     "resources": [
