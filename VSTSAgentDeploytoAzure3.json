@@ -10,9 +10,9 @@
     },
     "variables": {
       "VNETPrefix": "192.168.0.0/24",
-      "VNETSubnet1Name": "CountChocula",
+      "VNETSubnet1Name": "Subnet1name",
       "VNETSubnet1Prefix": "192.168.0.0/24",
-      "AgentVMName": "CountChocula",
+      "AgentVMName": "AgentVMName",
       "AgentVMAdminUserName": "azureuser",
       "AgentVMAdminPassword": "Passw0rd0134",
       "ImagePublisher": "MicrosoftWindowsServer",
@@ -61,7 +61,7 @@
         "apiVersion": "2017-10-01",
         "dependsOn": [],
         "tags": {
-          "displayName": "CountChocula-PUBIP"
+          "displayName": "AgentVM-PUBIP"
         },
         "properties": {
           "publicIPAllocationMethod": "Dynamic",
@@ -80,7 +80,7 @@
           "[resourceId('Microsoft.Network/publicIPAddresses', variables('AgentVM-PUBIPName'))]"
         ],
         "tags": {
-          "displayName": "CountChoculaNic"
+          "displayName": "Nic"
         },
         "properties": {
           "ipConfigurations": [
@@ -108,11 +108,11 @@
           "[resourceId('Microsoft.Network/networkInterfaces', variables('NicName'))]"
         ],
         "tags": {
-          "displayName": "CountChocula"
+          "displayName": "AgentVMName"
         },
         "properties": {
           "hardwareProfile": {
-            "vmSize": "[variables('CountChoculaVmSize')]"
+            "vmSize": "[variables('VmSize')]"
           },
           "osProfile": {
             "computerName": "[variables('AgentVMName')]",
@@ -141,7 +141,7 @@
         },
         "resources": [
           {
-            "name": "InstallCountChoculaApps",
+            "name": "InstallAppswithChocolatey",
             "type": "extensions",
             "location": "[resourceGroup().location]",
             "apiVersion": "2017-12-01",
@@ -149,7 +149,7 @@
               "[resourceId('Microsoft.Compute/virtualMachines', variables('AgentVMName'))]"
              ],
             "tags": {
-              "displayName": "Install CountChocula Applications"
+              "displayName": "InstallAppswithChocolatey"
             },
             "properties": {
               "publisher": "Microsoft.Compute",
