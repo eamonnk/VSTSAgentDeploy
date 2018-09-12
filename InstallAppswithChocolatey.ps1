@@ -21,6 +21,11 @@ $Packages = 'googlechrome',`
 
             'visualstudio2017-workload-netweb'
 
+            'visualstudio2017-workload-netweb'
+
+            'Docker'
+
+
 
 
 
