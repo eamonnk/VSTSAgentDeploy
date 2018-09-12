@@ -9,19 +9,19 @@
       }
     },
     "variables": {
-      "CountChoculaVNETPrefix": "192.168.0.0/24",
-      "CountChoculaVNETSubnet1Name": "CountChocula",
-      "CountChoculaVNETSubnet1Prefix": "192.168.0.0/24",
+      "VNETPrefix": "192.168.0.0/24",
+      "VNETSubnet1Name": "CountChocula",
+      "VNETSubnet1Prefix": "192.168.0.0/24",
       "CountChoculaName": "CountChocula",
       "CountChoculaAdminUserName": "stormtrooperio",
       "CountChoculaAdminPassword": "Password.1!!",
       "CountChoculaImagePublisher": "MicrosoftWindowsServer",
-      "CountChoculaImageOffer": "WindowsServer",
-      "CountChoculaWindowsOSVersion": "2016-Datacenter",
+      "CountChoculaImageOffer": "WindowsServerSemiAnnual",
+      "CountChoculaWindowsOSVersion": "Datacenter-Core-1709-with-Containers-smalldisk",
       "CountChoculaOSDiskName": "[concat(variables('CountChoculaName'), '-OSDISK')]",
       "CountChoculaVmSize": "Standard_D2s_v3",
       "CountChoculaVnetID": "[resourceId('Microsoft.Network/virtualNetworks', 'CountChoculaVNET')]",
-      "CountChoculaSubnetRef": "[concat(variables('CountChoculaVnetID'), '/subnets/', variables('CountChoculaVNETSubnet1Name'))]",
+      "CountChoculaSubnetRef": "[concat(variables('CountChoculaVnetID'), '/subnets/', variables('VNETSubnet1Name'))]",
       "CountChoculaNicName": "[concat(variables('CountChoculaName'), '-NIC')]",
       "CountChocula-PUBIPName": "[concat(variables('CountChoculaName'), '-PIP')]",
       "InstallAppsScriptFolder": ".",
@@ -41,14 +41,14 @@
         "properties": {
           "addressSpace": {
             "addressPrefixes": [
-              "[variables('CountChoculaVNETPrefix')]"
+              "[variables('VNETPrefix')]"
             ]
           },
           "subnets": [
             {
-              "name": "[variables('CountChoculaVNETSubnet1Name')]",
+              "name": "[variables('VNETSubnet1Name')]",
               "properties": {
-                "addressPrefix": "[variables('CountChoculaVNETSubnet1Prefix')]"
+                "addressPrefix": "[variables('VNETSubnet1Prefix')]"
               }
             }
           ]
