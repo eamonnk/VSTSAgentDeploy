@@ -13,8 +13,8 @@
       "VNETSubnet1Name": "CountChocula",
       "VNETSubnet1Prefix": "192.168.0.0/24",
       "CountChoculaName": "CountChocula",
-      "CountChoculaAdminUserName": "stormtrooperio",
-      "CountChoculaAdminPassword": "Password.1!!",
+      "AgentVMAdminUserName": "azureuser",
+      "AgentVMAdminPassword": "Passw0rd0134",
       "CountChoculaImagePublisher": "MicrosoftWindowsServer",
       "CountChoculaImageOffer": "WindowsServerSemiAnnual",
       "CountChoculaWindowsOSVersion": "Datacenter-Core-1709-with-Containers-smalldisk",
@@ -116,8 +116,8 @@
           },
           "osProfile": {
             "computerName": "[variables('CountChoculaName')]",
-            "adminUsername": "[variables('CountChoculaAdminUsername')]",
-            "adminPassword": "[variables('CountChoculaAdminPassword')]"
+            "adminUsername": "[variables('AgentVMAdminUsername')]",
+            "adminPassword": "[variables('AgentVMAdminPassword')]"
           },
           "storageProfile": {
             "imageReference": {
