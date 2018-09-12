@@ -9,72 +9,61 @@
         "virtualMachineName": {
             "type": "string",
             "defaultValue": "w16wcntrsvstsagent"
+
         },
-        "virtualMachineSize": {
-            "type": "string",
-            "defaultValue": "Standard_D2_v2"
+        "vmOSVersion": {
+                "type": "string",
+                "defaultValue": "Datacenter-Core-1709-with-Containers-smalldisk",
+                "allowedValues": [
+                    "Datacenter-Core-1709-with-Containers-smalldisk",
+                ],
+                "metadata": {
+                    "description": "Which version of Windows Server with Cotainers you would like to deploy"
+                }
         },
         "adminUsername": {
             "type": "string",
             "defaultValue": "azureuser"
         },
-        "virtualNetworkName": {
-            "type": "string",
-            "defaultValue": "vnet1"
-        },
-        "networkInterfaceName": {
-            "type": "string",
-            "defaultValue": "nic1"
-        },
-        "networkSecurityGroupName": {
-            "type": "string",
-            "defaultValue": "netsecgrp1"
-        },
         "adminPassword": {
             "type": "securestring",
             "defaultValue": "Passw0rd0134"
         },
-        "storageAccountName": {
-            "type": "string",
-            "defaultValue": "strac"
-        },
-        "storageAccountType": {
-            "type": "string",
-            "defaultValue": "Standard_LRS",
-            "allowedValues": [
-                "Standard_LRS",
-                "Premium_LRS"
-            ]
-        },
 
-        "addressPrefix": {
-            "type": "string",
-            "defaultValue": "10.0.0.0/16"
-        },
-        "subnetName": {
-            "type": "string",
-            "defaultValue": "subnet1"
-        },
-        "subnetPrefix": {
-            "type": "string",
-            "defaultValue": "10.0.0.0/24"
-        },
-        "publicIpAddressName": {
-            "type": "string",
-            "defaultValue": "pubip"
-        },
-        "publicIpAddressType": {
-            "type": "string",
-            "defaultValue": "Dynamic"
-        },
-        "publicIpAddressSku": {
-            "type": "string",
-            "defaultValue": "Standard"
-        }
     },
     "variables": {
         "vnetId": "[resourceId('w16wcntrs_vstsagent_rg','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
-        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
+        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
+
+
+        /*VM*/
+        "imagepublisher": "MicrosoftWindowsServer",
+        "imageoffer": "WindowsServerSemiAnnual",
+        "sku": "Datacenter-Core-1709-with-Containers-smalldisk",
+        "virtualMachineSize": "Standard_D2s_v3",
+
+        /*Network */
+        "virtualNetworkName": "vnet1",
+        "networkInterfaceName": "nic1",
+        "subnetName":  "subnet1"
+        "subnetPrefix": "10.0.0.0/24"
+        "publicIpAddressName": "pubip"
+        "publicIpAddressType":"Dynamic"
+        "publicIpAddressSku": "Standard"
+        "networkSecurityGroupName": "netsecgrp1",
+        "addressPrefix": "10.0.0.0/16"
+        
+        /*Storage*/
+        "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'visstudiovm')]",
+        "storageAccountType": "Standard_LRS",
+        "subnetName":  "subnet1"
+        "subnetPrefix": "10.0.0.0/24"
+        "publicIpAddressName": "pubip"
+        "publicIpAddressType":"Dynamic"
+        "publicIpAddressSku": "Standard"
+
+            
+
     },
     "resources": [
         {
@@ -100,9 +89,9 @@
                 },
                 "storageProfile": {
                     "imageReference": {
-                        "publisher": "MicrosoftWindowsServer",
-                        "offer": "WindowsServerSemiAnnual",
-                        "sku": "Datacenter-Core-1709-with-Containers-smalldisk",
+                        "publisher": "[variables('imagePublisher')]"
+                        "offer": "[variables('imageoublisher')]"
+                        "sku": "[variablessku('CountChoculaImagePublisher')]"
                         "version": "latest"
                     },
                     "osDisk": {
