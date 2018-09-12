@@ -34,15 +34,10 @@
     "variables": {
         "vnetId": "[resourceId('w16wcntrs_vstsagent_rg','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
-
-
-        /*VM*/
         "imagepublisher": "MicrosoftWindowsServer",
         "imageoffer": "WindowsServerSemiAnnual",
         "sku": "Datacenter-Core-1709-with-Containers-smalldisk",
         "virtualMachineSize": "Standard_D2s_v3",
-
-        /*Network */
         "virtualNetworkName": "vnet1",
         "networkInterfaceName": "nic1",
         "subnetName":  "subnet1"
@@ -52,8 +47,6 @@
         "publicIpAddressSku": "Standard"
         "networkSecurityGroupName": "netsecgrp1",
         "addressPrefix": "10.0.0.0/16"
-        
-        /*Storage*/
         "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'visstudiovm')]",
         "storageAccountType": "Standard_LRS",
         "subnetName":  "subnet1"
