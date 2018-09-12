@@ -15,7 +15,7 @@
                 "type": "string",
                 "defaultValue": "Datacenter-Core-1709-with-Containers-smalldisk",
                 "allowedValues": [
-                    "Datacenter-Core-1709-with-Containers-smalldisk",
+                    "Datacenter-Core-1709-with-Containers-smalldisk"
                 ],
                 "metadata": {
                     "description": "Which version of Windows Server with Cotainers you would like to deploy"
