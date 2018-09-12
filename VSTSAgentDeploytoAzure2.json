@@ -16,8 +16,8 @@
       "AdminUserName": "stormtrooperio",
       "AdminPassword": "Password.1!!",
       "ImagePublisher": "MicrosoftWindowsServer",
-      "ImageOffer": "WindowsServer",
-      "WindowsOSVersion": "2016-Datacenter",
+      "ImageOffer": "WindowsServerSemiAnnual",
+      "WindowsOSVersion": "Datacenter-Core-1709-with-Containers-smalldisk",
       "OSDiskName": "[concat(variables('VMName'), '-OSDISK')]",
       "VmSize": "Standard_D2s_v3",
       "VnetID": "[resourceId('Microsoft.Network/virtualNetworks', 'VNET')]",
@@ -166,6 +166,45 @@
           }
         ]
       }
+
+    {
+        "name": "microsoft.vsts-agent-windows-20180912063122",
+        "apiVersion": "2015-01-01",
+        "type": "Microsoft.Resources/deployments",
+        "properties": {
+            "mode": "incremental",
+            "templateLink": {
+                "uri": "https://gallery.azure.com/artifact/20161101/microsoft.vsts-agent-windows-arm.1.0.2/Artifacts/MainTemplate.json"
+            },
+            "parameters": {
+                "vmName": {
+                    "value": "w16wcntrs"
+                },
+                "location": {
+                    "value": "westeurope"
+                },
+                "VSTSAccountUrl": {
+                    "value": "https://eamdevopsci1.visualstudio.com"
+                },
+                "TeamProject": {
+                    "value": "PUCNTRS8"
+                },
+                "DeploymentGroup": {
+                    "value": "DeployGroup1"
+                },
+                "AgentName": {
+                    "value": "azurew16wcntrs"
+                },
+                "PATToken": {
+                    "value": "3mfmseyf6x2ixfhqczylwpe3x44klholg4t3wxftdhyogdmd2ciq"
+                }
+            }
+        },
+        "dependsOn": [
+            "[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineName'))]"
+        ]
+    },
+
     ],
     "outputs": {}
   }
