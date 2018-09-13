@@ -11,7 +11,9 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://cho
 
 $Packages = 'nodejs.install --version 6.12.3',`
 
-            'bower --version 1.8.4'
+            'bower --version 1.8.4',`
+
+            'googlechrome',`
 
             'vscode',`
 
@@ -19,11 +21,11 @@ $Packages = 'nodejs.install --version 6.12.3',`
 
             'visualstudio2017-workload-azure',`
 
-            'visualstudio2017-workload-netweb'
+            'visualstudio2017-workload-netweb',`
 
-            'Microsoft-Hyper-V-All -s windowsfeature'
+            'Microsoft-Hyper-V-All -s windowsfeature',`
             
-            'containers'  
+            'containers',`
             
             'docker-for-windows'
 
