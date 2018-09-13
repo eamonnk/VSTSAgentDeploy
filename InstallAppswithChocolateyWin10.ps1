@@ -19,7 +19,9 @@ $Packages = 'googlechrome',`
 
             'visualstudio2017-workload-netweb'
 
-            'Microsoft-Hyper-V-All -s windowsfeature'  
+            'Microsoft-Hyper-V-All -s windowsfeature'
+            
+            'containers'  
             
             'docker-for-windows'
 
