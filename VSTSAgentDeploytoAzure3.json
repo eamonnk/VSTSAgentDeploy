@@ -16,7 +16,7 @@
       "AgentVMAdminUserName": "azureuser",
       "AgentVMAdminPassword": "Passw0rd0134",
       "ImagePublisher": "MicrosoftWindowsServer",
-      "ImageOffer": "WindowsServerl",
+      "ImageOffer": "WindowsServer",
       "WindowsOSVersion": "2016-Datacenter",
       "OSDiskName": "[concat(variables('AgentVMName'), '-OSDISK')]",
       "VmSize": "Standard_D2s_v3",
