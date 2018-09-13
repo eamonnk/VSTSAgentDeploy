@@ -17,7 +17,7 @@
       "AgentVMAdminPassword": "Passw0rd0134",
       "ImagePublisher": "MicrosoftVisualStudio",
       "ImageOffer": "VisualStudio",
-      "WindowsOSVersion": "VS-2017-Comm-Win10-N",
+      "WindowsOSVersion": "VS-2017-Comm-Latest- Win10-N",
       "OSDiskName": "[concat(variables('AgentVMName'), '-OSDISK')]",
       "VmSize": "Standard_D2s_v3",
       "VnetID": "[resourceId('Microsoft.Network/virtualNetworks', 'VSTSAgentVNET')]",

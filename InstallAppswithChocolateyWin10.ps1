@@ -9,7 +9,9 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://cho
 
 #Assign Packages to Install
 
-$Packages = 'googlechrome',`
+$Packages = 'nodejs.install --version 6.12.3',`
+
+            'bower --version 1.8.4'
 
             'vscode',`
 
@@ -34,6 +36,8 @@ $Packages = 'googlechrome',`
 ForEach ($PackageName in $Packages)
 
 {choco install $PackageName -y}
+
+
 
 
 
