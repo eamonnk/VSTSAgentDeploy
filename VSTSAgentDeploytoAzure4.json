@@ -25,8 +25,8 @@
       "NicName": "[concat(variables('AgentVMName'), '-NIC')]",
       "AgentVM-PUBIPName": "[concat(variables('AgentVMName'), '-PIP')]",
       "InstallAppsScriptFolder": ".",
-      "InstallAppsScriptFileName": "InstallAppswithChocolatey.ps1",
-      "InstallAppsURL": "https://raw.githubusercontent.com/eamonnk/VSTSAgentDeploy/master/InstallAppswithChocolatey.ps1"
+      "InstallAppsScriptFileName": "InstallAppswithChocolateyWin10.ps1",
+      "InstallAppsURL": "https://raw.githubusercontent.com/eamonnk/VSTSAgentDeploy/master/InstallAppswithChocolateyWin10.ps1"
     },
     "resources": [
       {
@@ -149,7 +149,7 @@
               "[resourceId('Microsoft.Compute/virtualMachines', variables('AgentVMName'))]"
              ],
             "tags": {
-              "displayName": "InstallAppswithChocolatey"
+              "displayName": "InstallAppswithChocolateyWin10"
             },
             "properties": {
               "publisher": "Microsoft.Compute",
