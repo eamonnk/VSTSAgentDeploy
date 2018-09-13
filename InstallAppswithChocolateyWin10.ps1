@@ -19,9 +19,9 @@ $Packages = 'googlechrome',`
 
             'visualstudio2017-workload-netweb'
 
+            'Microsoft-Hyper-V-All -s windowsfeature'  
+            
             'docker-for-windows'
-
-            'Microsoft-Hyper-V -s windowsfeatures'  
 
 
 
@@ -37,4 +37,4 @@ ForEach ($PackageName in $Packages)
 
 #Reboot
 
-Restart-Computer
+Restart-Computer -Force
