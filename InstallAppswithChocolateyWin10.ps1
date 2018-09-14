@@ -9,7 +9,7 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://cho
 
 #Assign Packages to Install
 
-$Packages = 'nodejs.install --version 6.12.3',`
+$Packages = 'nodejs.install --version 6.12.3'
 
 #            'bower --version 1.8.4',`
 
