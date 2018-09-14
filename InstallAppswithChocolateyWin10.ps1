@@ -17,11 +17,11 @@ $Packages = 'nodejs.install --version 6.12.3',`
 
 #            'vscode',`
 
-            'git',`
+#          'git',`
 
-            'visualstudio2017-workload-azure',`
+ #           'visualstudio2017-workload-azure',`
 
-            'visualstudio2017-workload-netweb',`
+  #          'visualstudio2017-workload-netweb',`
 #
 #           'Microsoft-Hyper-V-All -s windowsfeature',`
             
